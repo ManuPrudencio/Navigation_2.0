@@ -6,7 +6,9 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
     NavMeshAgent agent;
+    
 
+    
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
