@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class Player : MonoBehaviour
 {
     NavMeshAgent agent;
-    
 
-    
+    private Animator animator;
+
+
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -25,5 +27,18 @@ public class Player : MonoBehaviour
                 agent.destination = hit.point;
             }
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            this.animator.SetTrigger("Attack 01");
+        }
+        if (Input.GetMouseButton(1))
+        {
+            this.animator.SetTrigger("Defend");
+        }
+    }
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+
     }
 }

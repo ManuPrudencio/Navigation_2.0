@@ -5,7 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class ArturitoHealth : MonoBehaviour
 {
+    [SerializeField]
+    private Canvas canvas;
     private Animator animator;
+
+    private Canvas FinalCanvas;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +19,10 @@ public class ArturitoHealth : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        FinalCanvas = canvas.GetComponent<Canvas>();
+        FinalCanvas.enabled = false;
+
+
 
     }
 
@@ -23,10 +32,7 @@ public class ArturitoHealth : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-
-    }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -38,7 +44,10 @@ public class ArturitoHealth : MonoBehaviour
     {
         this.animator.SetTrigger("Die");
         yield return  new WaitForSeconds(0.8f);
-        SceneManager.LoadScene("Game");
+        Time.timeScale = 0.0F;
+        FinalCanvas.enabled = true;
+        
+        
     }
 
 
